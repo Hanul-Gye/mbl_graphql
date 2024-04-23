@@ -2,3 +2,4 @@ Django==4.2.11
 graphene-django==3.2.0
 boto3
 opencv-python
+python-decouple

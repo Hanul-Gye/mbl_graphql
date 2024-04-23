@@ -5,12 +5,8 @@ services:
       - ./app:/usr/src/app
     ports:
       - "8000:8000"
-    environment:
-      - AWS_ACCESS_KEY_ID=dummy
-      - AWS_SECRET_ACCESS_KEY=dummy
-      - AWS_DEFAULT_REGION=us-west-2
-      - DYNAMODB_TABLE=your-table-name
-      - DYNAMODB_ENDPOINT=http://dynamodb-local:8000
+    env_file:
+      - .env
     tty: true
 
   dynamodb-local:

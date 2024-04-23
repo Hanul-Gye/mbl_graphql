@@ -10,11 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import boto3
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -73,12 +74,20 @@ WSGI_APPLICATION = 'mbl_graphql.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# AWS DynamoDB Configuration
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_DEFAULT_REGION = config('AWS_DEFAULT_REGION')
+DYNAMODB_TABLE = config('DYNAMODB_TABLE')
+DYNAMODB_ENDPOINT = config('DYNAMODB_ENDPOINT', default=None)
+
+dynamodb = boto3.resource(
+    'dynamodb',
+    region_name=AWS_DEFAULT_REGION,
+    aws_access_key_id=AWS_ACCESS_KEY_ID,
+    aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+    endpoint_url=DYNAMODB_ENDPOINT  # 로컬 DynamoDB 인스턴스를 위한 설정
+)
 
 
 # Password validation
