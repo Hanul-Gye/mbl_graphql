@@ -78,7 +78,6 @@ WSGI_APPLICATION = 'mbl_graphql.wsgi.application'
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
 AWS_DEFAULT_REGION = config('AWS_DEFAULT_REGION')
-DYNAMODB_TABLE = config('DYNAMODB_TABLE')
 DYNAMODB_ENDPOINT = config('DYNAMODB_ENDPOINT', default=None)
 
 dynamodb = boto3.resource(

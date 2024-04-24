@@ -3,3 +3,4 @@ graphene-django==3.2.0
 boto3
 opencv-python
 python-decouple
+pynamodb
