@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from dynamodb.models import PushupDay
+from mbl_graphql.dynamodb.models import PushupDay
 
 class Command(BaseCommand):
     help = 'Creates the DynamoDB table for pushups if it does not exist'

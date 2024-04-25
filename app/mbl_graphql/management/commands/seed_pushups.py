@@ -1,13 +1,13 @@
 import json
 from django.core.management.base import BaseCommand
-from dynamodb.models import PushupDay
+from mbl_graphql.dynamodb.models import PushupDay
 
 class Command(BaseCommand):
     help = 'Seeds the database with initial pushup data from a JSON file'
 
     def handle(self, *args, **options):
         try:
-            with open('dynamodb/seeds/initial_pushups_data.json', 'r') as file:
+            with open('mbl_graphql/dynamodb/seeds/initial_pushups_data.json', 'r') as file:
                 data = json.load(file)
             for item in data:
                 pushup_day = PushupDay()
